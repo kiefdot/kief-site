@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
   // ✅ FAVICON
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
   },
 
   // ✅ OPEN GRAPH (for link previews)
