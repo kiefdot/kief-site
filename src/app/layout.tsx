@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   description:
     "Kief is a contemporary fashion brand built on hemp, linen, and conscious production. Small-batch craft rooted in Sri Lanka.",
 
-  // ✅ FAVICON
+  // ✅ FAVICON (works best with .ico)
   icons: {
     icon: "/favicon.ico",
   },
 
-  // ✅ OPEN GRAPH (for link previews)
+  // ✅ OPEN GRAPH (for WhatsApp, Discord, etc.)
   openGraph: {
     title: "Kief — From the Leaf, For the Life.",
     description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Kief",
     images: [
       {
-        url: "/preview.png",
+        url: "https://kiefdot.com/preview.png", // 🔥 FULL URL (important)
         width: 1200,
         height: 630,
       },
@@ -46,28 +46,26 @@ export const metadata: Metadata = {
     type: "website",
   },
 
-  // ✅ TWITTER PREVIEW (important for sharing)
+  // ✅ TWITTER PREVIEW
   twitter: {
     card: "summary_large_image",
     title: "Kief — From the Leaf, For the Life.",
     description:
       "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
-    images: ["/preview.png"],
+    images: ["https://kiefdot.com/preview.png"],
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
         <Navigation />
-        <main className="min-h-screen pt-16">
-          {children}
-        </main>
+        <main className="min-h-screen pt-16">{children}</main>
         <Footer />
       </body>
     </html>
