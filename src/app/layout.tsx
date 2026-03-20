@@ -19,33 +19,40 @@ const sans = DM_Sans({
   display: "swap",
 });
 
+// ✅ FULL SEO + PREVIEW CONFIG
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiefdot.com"),
-  title: "Kief — From the Leaf, For the Life.",
-  description:
-    "Kief is a contemporary fashion brand built on hemp, linen, and conscious production. Small-batch craft rooted in Sri Lanka.",
 
-  // ✅ FAVICON (works best with .ico)
+  title: "Kief — Hemp × Linen — Sri Lanka",
+  description:
+    "Kief crafts premium sustainable fashion from hemp and linen. Rooted in Sri Lanka. Small-batch, conscious production.",
+
   icons: {
     icon: "/favicon.ico",
   },
 
-  // ✅ OPEN GRAPH (for WhatsApp, Discord, etc.)
   openGraph: {
     title: "Kief — From the Leaf, For the Life.",
     description:
-      "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
+      "Premium hemp & linen garments crafted in Sri Lanka. Conscious fashion, small-batch production.",
     url: "https://kiefdot.com",
     siteName: "Kief",
+    images: [
+      {
+        url: "/images/preview-new.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
     type: "website",
   },
 
-  // ✅ TWITTER PREVIEW
   twitter: {
     card: "summary_large_image",
     title: "Kief — From the Leaf, For the Life.",
     description:
-      "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
+      "Premium hemp & linen garments crafted in Sri Lanka.",
+    images: ["/images/preview-new.png"],
   },
 };
 
