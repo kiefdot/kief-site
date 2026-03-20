@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Kief",
     images: [
       {
-        url: "https://kiefdot.com/preview.png", // 🔥 FULL URL (important)
+        url: "https://kiefdot.com/preview-new.png", // 🔥 FULL URL (important)
         width: 1200,
         height: 630,
       },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Kief — From the Leaf, For the Life.",
     description:
       "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
-    images: ["https://kiefdot.com/preview.png"],
+    images: ["https://kiefdot.com/preview-new.png"],
   },
 };
 
