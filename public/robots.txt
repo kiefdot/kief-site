@@ -6,3 +6,11 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Instagram
+Allow: /
+
+Sitemap: https://kiefdot.com/sitemap.xml
