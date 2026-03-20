@@ -20,6 +20,7 @@ const sans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kiefdot.com"),
   title: "Kief — From the Leaf, For the Life.",
   description:
     "Kief is a contemporary fashion brand built on hemp, linen, and conscious production. Small-batch craft rooted in Sri Lanka.",
