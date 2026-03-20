@@ -19,7 +19,7 @@ const sans = DM_Sans({
   display: "swap",
 });
 
-// ✅ FULL SEO + PREVIEW CONFIG
+// ✅ FULL SEO + PREVIEW + GOOGLE VERIFICATION
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiefdot.com"),
 
@@ -27,10 +27,17 @@ export const metadata: Metadata = {
   description:
     "Kief crafts premium sustainable fashion from hemp and linen. Rooted in Sri Lanka. Small-batch, conscious production.",
 
+  // ✅ GOOGLE SEARCH CONSOLE VERIFICATION
+  verification: {
+    google: "Dku2zrlxJdEB3z_UYIKEX4gLtST404A7D8_GOHd2Lh0",
+  },
+
+  // ✅ FAVICON
   icons: {
     icon: "/favicon.ico",
   },
 
+  // ✅ SOCIAL PREVIEW (WhatsApp, Facebook, etc.)
   openGraph: {
     title: "Kief — From the Leaf, For the Life.",
     description:
@@ -47,6 +54,7 @@ export const metadata: Metadata = {
     type: "website",
   },
 
+  // ✅ TWITTER PREVIEW
   twitter: {
     card: "summary_large_image",
     title: "Kief — From the Leaf, For the Life.",
