@@ -37,13 +37,6 @@ export const metadata: Metadata = {
       "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
     url: "https://kiefdot.com",
     siteName: "Kief",
-    images: [
-      {
-        url: "https://kiefdot.com/preview-new.png", // 🔥 FULL URL (important)
-        width: 1200,
-        height: 630,
-      },
-    ],
     type: "website",
   },
 
@@ -53,7 +46,6 @@ export const metadata: Metadata = {
     title: "Kief — From the Leaf, For the Life.",
     description:
       "Kief is a contemporary fashion brand built on hemp, linen, and conscious production.",
-    images: ["https://kiefdot.com/preview-new.png"],
   },
 };
 
