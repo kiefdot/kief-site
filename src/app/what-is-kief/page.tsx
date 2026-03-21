@@ -77,7 +77,7 @@ export default function WhatIsKief() {
       <section className="container-clean section-padding">
         <div className="grid-2">
           <div className="img-zoom reveal" style={{ position: "relative", height: "clamp(260px,40vw,460px)" }}>
-            <Image src="/images/circular.png" alt="circular.png" fill style={{ objectFit: "cover" }} />
+            <Image src="/images/circular-1.png" alt="circular-1.png" fill style={{ objectFit: "cover" }} />
             <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.5)", display: "flex", alignItems: "flex-end", padding: "2.5rem" }}>
               <p className="font-serif" style={{ fontSize: "clamp(1.6rem,4vw,2.8rem)", fontWeight: 300, lineHeight: 1.1 }}>Cycle One</p>
             </div>

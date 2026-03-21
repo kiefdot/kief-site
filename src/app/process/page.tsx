@@ -98,8 +98,8 @@ export default function Process() {
       {/* ── FULL IMAGE ────────────────────────────────────────────────── */}
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)" }}>
         <Image
-          src="/images/process.png"
-          alt="process.png"
+          src="/images/processimg-1.png"
+          alt="processimg-1.png"
           fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
