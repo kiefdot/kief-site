@@ -62,14 +62,7 @@ export default function Process() {
           <div
             key={item.num}
             className={`reveal d${Math.min(i + 1, 4)}`}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "4rem 1fr",
-              gap: "1.5rem",
-              padding: "clamp(2rem,4vw,3rem) 0",
-              borderTop: "1px solid rgba(240,237,232,0.05)",
-              alignItems: "start",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "4rem 1fr", gap: "1.5rem", padding: "clamp(2rem,4vw,3rem) 0", borderTop: "1px solid rgba(240,237,232,0.05)", alignItems: "start" }}
           >
             <p className="font-serif" style={{ fontSize: "clamp(1.6rem,3vw,2.5rem)", fontWeight: 300, color: "var(--accent)", lineHeight: 1 }}>
               {item.num}
@@ -95,14 +88,20 @@ export default function Process() {
         </p>
       </section>
 
-      {/* ── FULL IMAGE ────────────────────────────────────────────────── */}
-      <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)" }}>
+      {/* ── FULL IMAGE — processimg-1.png ─────────────────────────────── */}
+      {/*
+        FIX: processimg-1 was failing because Next.js Image needs a known
+        width/height or fill. Using fill with a fixed-height container works
+        reliably regardless of the original image dimensions.
+        File must be at: /public/images/processimg-1.png
+      */}
+      <section className="reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)", overflow: "hidden" }}>
         <Image
           src="/images/processimg-1.png"
-          alt="processimg-1.png"
+          alt="Kief making process"
           fill
           sizes="100vw"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.3)" }} />
       </section>
@@ -136,25 +135,12 @@ export default function Process() {
           Experience the result of this process.
         </p>
         <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, maxWidth: "28rem", margin: "0 auto 2.5rem" }}>
-          Cycle One — fifteen pieces. Built slowly. Released once.
+          Cycle One — five pieces each. Built slowly. Released once.
         </p>
         <div className="reveal d3">
           <Link
             href="/store"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              fontFamily: "var(--font-sans,'DM Sans',sans-serif)",
-              fontSize: "9px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "#ffffff",
-              background: "var(--accent)",
-              padding: "1rem 2.5rem",
-              textDecoration: "none",
-              transition: "opacity .25s",
-            }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", fontFamily: "var(--font-sans,'DM Sans',sans-serif)", fontSize: "9px", letterSpacing: "0.35em", textTransform: "uppercase", color: "#ffffff", background: "var(--accent)", padding: "1rem 2.5rem", textDecoration: "none", transition: "opacity .25s" }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >

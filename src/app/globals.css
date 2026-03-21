@@ -475,7 +475,6 @@ input[type="range"]::-webkit-slider-thumb {
   top: 0;
   left: 0;
   right: 0;
-  /* z-index 200 — above grain overlay (9999 is body::before pointer-events:none) */
   z-index: 200;
   transition: background 0.5s, border-color 0.5s;
 }
@@ -498,6 +497,9 @@ input[type="range"]::-webkit-slider-thumb {
   justify-content: space-between;
   padding: 0 clamp(1.5rem, 5vw, 5rem);
   height: 64px;
+  position: relative;
+  z-index: 210;
+  /* inner row always above page content */
 }
 
 .kief-nav-links {
@@ -546,7 +548,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 100%;
 }
 
-/* hamburger — always visible on mobile */
+/* hamburger — always visible on mobile, z-index above everything */
 .kief-burger {
   display: none;
   flex-direction: column;
@@ -555,10 +557,9 @@ input[type="range"]::-webkit-slider-thumb {
   border: none;
   cursor: pointer;
   padding: 8px;
-  /* bigger tap target */
   position: relative;
-  z-index: 201;
-  /* above everything */
+  z-index: 210;
+  /* highest z-index on the page */
 }
 
 @media (max-width: 900px) {

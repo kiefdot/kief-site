@@ -59,7 +59,6 @@ export default function Community() {
         <p className="eyebrow reveal" style={{ marginBottom: "3rem" }}>Cycle One Kief Community Initiative</p>
         <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4rem,8vw,7rem)" }}>
 
-          {/* Initiative 01 — image left, text right */}
           <div className="reveal d1">
             <div className="grid-2">
               <div className="img-zoom" style={{ position: "relative", height: "clamp(240px,35vw,460px)" }}>
@@ -77,7 +76,6 @@ export default function Community() {
             </div>
           </div>
 
-          {/* Initiative 02 — text left, image right */}
           <div className="reveal d2">
             <div className="grid-2">
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", justifyContent: "center" }}>
@@ -109,7 +107,6 @@ export default function Community() {
           If we grow together over the next 5 years
         </p>
 
-        {/* slider */}
         <div className="reveal d2" style={{ maxWidth: "380px", margin: "0 auto 3rem", padding: "0 1rem" }}>
           <div
             style={{ position: "relative", height: "2px", background: "rgba(240,237,232,0.08)", cursor: "pointer", userSelect: "none" }}
@@ -142,7 +139,6 @@ export default function Community() {
               }}
             />
           </div>
-
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
             {[1,2,3,4,5].map((y) => (
               <button key={y} onClick={() => setYear(y)} style={{ fontFamily: "var(--serif)", fontSize: "clamp(0.8rem,1.4vw,1rem)", fontStyle: "italic", color: y === year ? "var(--accent)" : "var(--muted)", background: "none", border: "none", cursor: "pointer", transition: "color .2s", fontWeight: 300, padding: "0.25rem" }}>
@@ -181,7 +177,7 @@ export default function Community() {
 
       <hr className="rule" />
 
-      {/* ── SIGNUP — centred, full-width on mobile ─────────────────────── */}
+      {/* ── SIGNUP ────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding" style={{ textAlign: "center" }}>
         <div style={{ maxWidth: "36rem", margin: "0 auto" }}>
           <p className="eyebrow reveal" style={{ marginBottom: "1.5rem" }}>Community Access</p>
@@ -191,8 +187,6 @@ export default function Community() {
           <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, marginBottom: "2.5rem" }}>
             Updates on releases, initiatives, and community impact.<br />No spam — only meaningful updates.
           </p>
-
-          {/* mobile: stacks column, desktop: row */}
           <form
             action="https://formspree.io/f/myknorrq"
             method="POST"
@@ -204,59 +198,19 @@ export default function Community() {
               name="email"
               required
               placeholder="Your email address"
-              style={{
-                flex: "1 1 200px",
-                maxWidth: "100%",
-                padding: "0.9rem 1rem",
-                background: "transparent",
-                border: "1px solid rgba(240,237,232,0.08)",
-                fontFamily: "var(--font-sans,'DM Sans',sans-serif)",
-                fontSize: "clamp(0.85rem,1.1vw,0.95rem)",
-                fontWeight: 300,
-                color: "var(--fg)",
-                outline: "none",
-              }}
+              style={{ flex: "1 1 200px", maxWidth: "100%", padding: "0.9rem 1rem", background: "transparent", border: "1px solid rgba(240,237,232,0.08)", fontFamily: "var(--font-sans,'DM Sans',sans-serif)", fontSize: "clamp(0.85rem,1.1vw,0.95rem)", fontWeight: 300, color: "var(--fg)", outline: "none" }}
               onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(240,237,232,0.25)")}
               onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(240,237,232,0.08)")}
             />
             <button
               type="submit"
-              style={{
-                flex: "0 0 auto",
-                padding: "0.9rem 2rem",
-                background: "var(--accent)",
-                color: "#ffffff",
-                fontFamily: "var(--font-sans,'DM Sans',sans-serif)",
-                fontSize: "9px",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                border: "none",
-                cursor: "pointer",
-                transition: "opacity .25s",
-              }}
+              style={{ flex: "0 0 auto", padding: "0.9rem 2rem", background: "var(--accent)", color: "#ffffff", fontFamily: "var(--font-sans,'DM Sans',sans-serif)", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", border: "none", cursor: "pointer", transition: "opacity .25s" }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               Join
             </button>
           </form>
-
-          {/* on narrow mobile, center the join button */}
-          <style>{`
-            @media (max-width: 480px) {
-              form[action*="formspree"] {
-                flex-direction: column !important;
-                align-items: center !important;
-              }
-              form[action*="formspree"] input {
-                width: 100% !important;
-              }
-              form[action*="formspree"] button {
-                width: 100% !important;
-                max-width: 200px !important;
-              }
-            }
-          `}</style>
         </div>
       </section>
 
@@ -270,6 +224,49 @@ export default function Community() {
           <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, marginTop: "1.25rem", maxWidth: "28rem", marginLeft: "auto", marginRight: "auto" }}>
             As Kief grows, so will the scope of the community work.
           </p>
+        </div>
+      </section>
+
+      {/* ── PDF DOWNLOAD ──────────────────────────────────────────────── */}
+      {/*
+        HOW TO ADD YOUR PDF:
+        1. Put your PDF file inside /public  e.g. /public/kief-community-initiative.pdf
+        2. The href below will work automatically — no other changes needed
+        3. Rename the file to match the href if needed
+      */}
+      <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)" }}>
+        <div className="container-clean section-padding" style={{ textAlign: "center" }}>
+          <p className="eyebrow reveal" style={{ marginBottom: "1.5rem" }}>Read More</p>
+          <p className="font-serif reveal d1" style={{ fontSize: "clamp(1.4rem,3vw,2.2rem)", fontWeight: 300, lineHeight: 1.2, marginBottom: "0.75rem" }}>
+            Our Community Initiative
+          </p>
+          <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, maxWidth: "28rem", margin: "0 auto 2.5rem" }}>
+            Download our full Kief Community Initiative document to learn more about what we are building.
+          </p>
+          <div className="reveal d3">
+            <a
+              href="/kief-community-initiative.pdf"
+              download
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                fontFamily: "var(--font-sans,'DM Sans',sans-serif)",
+                fontSize: "9px",
+                letterSpacing: "0.35em",
+                textTransform: "uppercase",
+                color: "#ffffff",
+                background: "var(--accent)",
+                padding: "1rem 2.5rem",
+                textDecoration: "none",
+                transition: "opacity .25s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              Download PDF ↓
+            </a>
+          </div>
         </div>
       </section>
 

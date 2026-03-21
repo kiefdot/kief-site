@@ -7,14 +7,31 @@ import Countdown from "@/components/Countdown";
 export default function Hemp() {
   useReveal();
 
+  // 4 hemp images — swipeable on mobile, grid on desktop
+  const hempImages = [
+    { src: "/images/hemp-1.jpg", alt: "Hemp fabric 1" },
+    { src: "/images/hemp-2.jpg", alt: "Hemp fabric 2" },
+    { src: "/images/hemp-3.jpg", alt: "Hemp fabric 3" },
+    { src: "/images/hemp-4.jpg", alt: "Hemp fabric 4" },
+  ];
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="container-clean" style={{ position: "relative", minHeight: "70vh", display: "flex", alignItems: "flex-end", paddingBottom: "clamp(3rem,8vw,6rem)", paddingTop: "clamp(5rem,9vw,8rem)" }}>
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "1px", background: "rgba(107,125,92,0.3)" }} />
+      {/*
+        KEY FIX: the hero section was getting z-index: 1 from position:relative
+        which was stacking above the nav (z-index 200). We don't set position:relative
+        on the outer container, only on the inner content div.
+        The nav hamburger at z-index 202 will always show on top.
+      */}
+      <section className="container-clean" style={{ minHeight: "70vh", display: "flex", alignItems: "flex-end", paddingBottom: "clamp(3rem,8vw,6rem)", paddingTop: "clamp(5rem,9vw,8rem)", position: "relative", overflow: "visible" }}>
+        {/* decorative left line — position absolute inside section is fine */}
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "1px", background: "rgba(107,125,92,0.3)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", left: 0, top: 0, width: "500px", height: "100%", background: "radial-gradient(ellipse at left center, rgba(107,125,92,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+
+        {/* hero content — no z-index set, nav sits above naturally at z-index 200 */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <p className="eyebrow reveal" style={{ color: "var(--accent)" }}>Our first material</p>
           <h1 className="font-serif reveal d1" style={{ fontSize: "clamp(4rem,14vw,11rem)", fontWeight: 300, lineHeight: 0.92, letterSpacing: "-0.03em" }}>Hemp</h1>
           <div className="reveal d2" style={{ color: "var(--accent)" }}>
@@ -46,7 +63,7 @@ export default function Hemp() {
 
       <hr className="rule" />
 
-      {/* ── WHY HEMP — text + 4-image grid ────────────────────────────── */}
+      {/* ── WHY HEMP ──────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-hemp">
 
@@ -78,26 +95,70 @@ export default function Hemp() {
             </div>
           </div>
 
-          {/* 4-image grid — 2 cols × 2 rows on desktop, swipeable on mobile */}
+          {/* ── IMAGE STRIP — desktop: 2×2 grid, mobile: swipeable ─── */}
           <div className="reveal d2">
-            {/* desktop: 2×2 grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-              <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
+            <style>{`
+              .hemp-strip {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+              }
+              .hemp-strip .hs-item {
+                position: relative;
+                overflow: hidden;
+              }
+              .hemp-strip .hs-item img {
+                transition: transform 1.1s cubic-bezier(0.16,1,0.3,1) !important;
+              }
+              .hemp-strip .hs-item:hover img {
+                transform: scale(1.05) !important;
+              }
+              @media (max-width: 768px) {
+                .hemp-strip {
+                  display: flex !important;
+                  overflow-x: auto;
+                  scroll-snap-type: x mandatory;
+                  -webkit-overflow-scrolling: touch;
+                  scrollbar-width: none;
+                  gap: 2px;
+                }
+                .hemp-strip::-webkit-scrollbar { display: none; }
+                .hemp-strip .hs-item {
+                  flex: 0 0 75vw;
+                  min-width: 75vw;
+                  height: 85vw;
+                  scroll-snap-align: start;
+                  aspect-ratio: unset !important;
+                  grid-column: unset !important;
+                }
+              }
+            `}</style>
+
+            <div className="hemp-strip">
+              {/* image 1 — portrait */}
+              <div className="hs-item" style={{ aspectRatio: "3/4" }}>
                 <Image src="/images/hemp-1.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "2.5rem" }}>
-                <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
-                  <Image src="/images/hemp-2.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+              {/* images 2 + 3 stacked */}
+              <div className="hs-item" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "2.5rem" }}>
+                <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
+                  <Image src="/images/hemp-2.jpg" alt="Hemp" fill style={{ objectFit: "cover", transition: "transform 1.1s cubic-bezier(0.16,1,0.3,1)" }} />
                 </div>
-                <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
-                  <Image src="/images/hemp-3.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+                <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
+                  <Image src="/images/hemp-3.jpg" alt="Hemp" fill style={{ objectFit: "cover", transition: "transform 1.1s cubic-bezier(0.16,1,0.3,1)" }} />
                 </div>
               </div>
-              {/* 4th image — spans full width on the row below */}
-              <div className="img-zoom" style={{ position: "relative", aspectRatio: "2/1", gridColumn: "1 / -1" }}>
+              {/* image 4 — full width banner */}
+              <div className="hs-item" style={{ aspectRatio: "2/1", gridColumn: "1 / -1" }}>
                 <Image src="/images/hemp-4.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
               </div>
             </div>
+
+            {/* mobile swipe hint */}
+            <p style={{ textAlign: "center", fontFamily: "var(--font-sans,'DM Sans',sans-serif)", fontSize: "8px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(240,237,232,0.2)", padding: "0.75rem 0", display: "none" }}
+              className="mobile-only">
+              Swipe to explore
+            </p>
           </div>
 
         </div>
