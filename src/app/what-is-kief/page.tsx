@@ -42,7 +42,7 @@ export default function WhatIsKief() {
 
       {/* FULL IMAGE */}
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(260px,50vw,560px)" }}>
-        <Image src="/images/fabric.png" alt="Fabric" fill sizes="100vw" style={{ objectFit: "cover" }} />
+        <Image src="/images/circular.png" alt="circular" fill sizes="100vw" style={{ objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.3)" }} />
       </section>
 

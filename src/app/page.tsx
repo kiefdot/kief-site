@@ -13,11 +13,11 @@ export default function Home() {
 
   // ── Process strip: 5 images, swipeable on mobile ─────────────────
   const processImages = [
-    { src: "/images/process1.jpg", alt: "Process step 1" },
-    { src: "/images/process2.jpg", alt: "Process step 2" },
-    { src: "/images/process3.jpg", alt: "Process step 3" },
-    { src: "/images/process4.jpg", alt: "Process step 4" },
-    { src: "/images/process5.jpg", alt: "Process step 5" },
+    { src: "/images/process1.png", alt: "Process step 1" },
+    { src: "/images/process2.png", alt: "Process step 2" },
+    { src: "/images/process3.png", alt: "Process step 3" },
+    { src: "/images/process4.png", alt: "Process step 4" },
+    { src: "/images/process5.png", alt: "Process step 5" },
   ];
 
   // Touch handling for process strip
