@@ -450,3 +450,34 @@ input[type="range"]::-webkit-slider-thumb {
   text-transform: uppercase;
   color: rgba(240,237,232,0.12);
 }
+
+/* ================================================ */
+/* MOBILE UTILITIES                                 */
+/* ================================================ */
+
+/* show only on mobile */
+.mobile-only { display: none; }
+@media (max-width: 768px) { .mobile-only { display: block; } }
+
+/* hide on mobile */
+.desktop-only { display: block; }
+@media (max-width: 768px) { .desktop-only { display: none; } }
+
+/* ── Community email input — max width on mobile ── */
+@media (max-width: 600px) {
+  /* prevent email input from being full-screen width */
+  form[action*="formspree"] {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  form[action*="formspree"] input[type="email"] {
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 0.9rem !important;
+  }
+  form[action*="formspree"] button[type="submit"] {
+    width: 100% !important;
+    max-width: 180px !important;
+  }
+}

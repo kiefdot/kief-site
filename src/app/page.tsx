@@ -8,49 +8,36 @@ import useReveal from "@/components/useReveal";
 export default function Home() {
   useReveal();
 
-  // Hero images — tap/swipe cycles through on mobile
-  const heroImages = [
-    "/images/mainpic.png",
-    "/images/fullimage.png",
-    "/images/collection.png",
-  ];
-  const [heroIdx, setHeroIdx] = useState(0);
-  const touchStartX = useRef<number>(0);
+  // ── Hero: single full-screen image (mainpic only) ─────────────────
+  // The "slideshow" dots from before were the problem — removed.
 
-  const nextHero = () => setHeroIdx((p) => (p + 1) % heroImages.length);
-  const prevHero = () => setHeroIdx((p) => (p - 1 + heroImages.length) % heroImages.length);
+  // ── Process strip: 5 images, swipeable on mobile ─────────────────
+  const processImages = [
+    { src: "/images/process1.jpg", alt: "Process step 1" },
+    { src: "/images/process2.jpg", alt: "Process step 2" },
+    { src: "/images/process3.jpg", alt: "Process step 3" },
+    { src: "/images/process4.jpg", alt: "Process step 4" },
+    { src: "/images/process5.jpg", alt: "Process step 5" },
+  ];
+
+  // Touch handling for process strip
+  const stripRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section
-        style={{ height: "100svh", position: "relative", overflow: "hidden" }}
-        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-        onTouchEnd={(e) => {
-          const diff = touchStartX.current - e.changedTouches[0].clientX;
-          if (Math.abs(diff) > 40) diff > 0 ? nextHero() : prevHero();
-        }}
-      >
-        {heroImages.map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt="Kief Campaign"
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            quality={100}
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              opacity: i === heroIdx ? 1 : 0,
-              transition: "opacity 0.8s cubic-bezier(0.16,1,0.3,1)",
-            }}
-          />
-        ))}
-
-        {/* gradient */}
+      {/* ── HERO — single image, no distracting UI ────────────────────── */}
+      <section style={{ height: "100svh", position: "relative", overflow: "hidden" }}>
+        <Image
+          src="/images/mainpic.png"
+          alt="Kief Campaign"
+          fill
+          priority
+          sizes="100vw"
+          quality={100}
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,13,11,0.72) 0%, rgba(14,13,11,0.12) 55%, rgba(14,13,11,0.28) 100%)" }} />
 
         {/* logo + tagline */}
@@ -64,29 +51,10 @@ export default function Home() {
           </p>
         </div>
 
-        {/* dot indicators */}
-        <div style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", right: "clamp(1.5rem,5vw,5rem)", display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
-          {heroImages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setHeroIdx(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              style={{
-                width: i === heroIdx ? "1px" : "1px",
-                height: i === heroIdx ? "32px" : "12px",
-                background: i === heroIdx ? "rgba(240,237,232,0.7)" : "rgba(240,237,232,0.2)",
-                border: "none",
-                cursor: "pointer",
-                transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
-                padding: 0,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* scroll hint */}
-        <div className="animate-blur-in delay-3" style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ width: "1px", height: "40px", background: "rgba(240,237,232,0.18)", display: "block" }} />
+        {/* scroll indicator */}
+        <div className="animate-blur-in delay-3" style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", right: "clamp(1.5rem,5vw,5rem)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
+          <span style={{ width: "1px", height: "48px", background: "rgba(240,237,232,0.15)", display: "block" }} />
+          <span className="eyebrow" style={{ color: "rgba(240,237,232,0.2)", writingMode: "vertical-rl", letterSpacing: "0.25em" }}>Scroll</span>
         </div>
       </section>
 
@@ -95,8 +63,8 @@ export default function Home() {
         <div className="marquee-track">
           {["Hemp & Linen", "Built Slowly", "Released Briefly", "Sri Lanka", "Cycle One", "From the Leaf", "Natural Fibres",
             "Hemp & Linen", "Built Slowly", "Released Briefly", "Sri Lanka", "Cycle One", "From the Leaf", "Natural Fibres"].map((t, i) => (
-            <span key={i} className="marquee-item">{t}</span>
-          ))}
+              <span key={i} className="marquee-item">{t}</span>
+            ))}
         </div>
       </div>
 
@@ -112,7 +80,7 @@ export default function Home() {
 
       <hr className="rule" />
 
-      {/* ── MATERIAL ──────────────────────────────────────────────────── */}
+      {/* ── MATERIAL TEXT ─────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-2">
           <p className="font-serif reveal" style={{ fontSize: "clamp(1.05rem,1.8vw,1.2rem)", fontWeight: 300, lineHeight: 1.85, fontStyle: "italic" }}>
@@ -128,16 +96,92 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FULL IMAGE ────────────────────────────────────────────────── */}
-      <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(260px,55vw,620px)" }}>
-        <Image src="/images/hero.png" alt="Kief Fabric" fill sizes="100vw" quality={90} style={{ objectFit: "cover" }} />
+      {/* ── PROCESS IMAGE STRIP ───────────────────────────────────────── */}
+      {/* Desktop: 5 images side by side fixed strip                      */}
+      {/* Mobile:  horizontal scroll / swipe                              */}
+      <section className="reveal">
+        <style>{`
+          .process-strip {
+            display: flex;
+            gap: 0;
+            overflow: hidden;
+          }
+          .process-strip .ps-item {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            height: clamp(260px, 40vw, 520px);
+            overflow: hidden;
+            cursor: pointer;
+          }
+          .process-strip .ps-item img {
+            transition: transform 1.1s cubic-bezier(0.16,1,0.3,1) !important;
+          }
+          .process-strip .ps-item:hover img {
+            transform: scale(1.06) !important;
+          }
+          /* label overlay */
+          .process-strip .ps-label {
+            position: absolute;
+            bottom: 1.25rem;
+            left: 1.25rem;
+            font-family: var(--font-sans, 'DM Sans', sans-serif);
+            font-size: 8px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(240,237,232,0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+          }
+          .process-strip .ps-item:hover .ps-label { opacity: 1; }
+
+          /* ── MOBILE: horizontal scroll strip ── */
+          @media (max-width: 768px) {
+            .process-strip {
+              overflow-x: auto;
+              scroll-snap-type: x mandatory;
+              -webkit-overflow-scrolling: touch;
+              scrollbar-width: none;
+              gap: 2px;
+            }
+            .process-strip::-webkit-scrollbar { display: none; }
+            .process-strip .ps-item {
+              flex: 0 0 80vw;
+              min-width: 80vw;
+              height: 60vw;
+              scroll-snap-align: start;
+            }
+          }
+        `}</style>
+
+        <div className="process-strip" ref={stripRef}>
+          {processImages.map((img, i) => (
+            <div key={i} className="ps-item img-zoom">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                sizes="(max-width:768px) 80vw, 20vw"
+                style={{ objectFit: "cover" }}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.15)" }} />
+              <span className="ps-label">0{i + 1}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* mobile scroll hint */}
+        <p style={{ textAlign: "center", fontFamily: "var(--font-sans,'DM Sans',sans-serif)", fontSize: "8px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(240,237,232,0.2)", padding: "0.75rem 0" }}
+          className="mobile-only">
+          Swipe to explore
+        </p>
       </section>
 
       {/* ── STATS ─────────────────────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)", borderBottom: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="grid-stats">
           {[
-            { num: "01",   label: "Cycle",   sub: "First release — limited run" },
+            { num: "01", label: "Cycle", sub: "First release — limited run" },
             { num: "100%", label: "Natural", sub: "Hemp & linen, nothing synthetic" },
           ].map(({ num, label, sub }) => (
             <div key={label} className="reveal" style={{ background: "var(--bg)", padding: "clamp(2.5rem,6vw,5rem) clamp(1.5rem,4vw,4rem)" }}>
@@ -190,12 +234,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA — Coming Soon ─────────────────────────────────────────── */}
+      {/* ── CTA ───────────────────────────────────────────────────────── */}
       <Link href="/store" className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,45vw,520px)", display: "block" }}>
         <Image src="/images/collection.png" alt="Cycle One" fill sizes="100vw" quality={90} style={{ objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.55)" }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem" }}>
-          {/* CHANGED: New Arrivals → Coming Soon */}
           <p className="eyebrow" style={{ color: "rgba(240,237,232,0.35)" }}>Coming Soon</p>
           <p className="font-serif" style={{ fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: 300, letterSpacing: "0.02em" }}>Cycle One</p>
           <span className="kief-link" style={{ pointerEvents: "none" }}>

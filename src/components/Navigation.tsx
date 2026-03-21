@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// All nav CSS is in globals.css — NO <style> tag here.
-// That was causing Next.js hydration mismatch (server vs client quote encoding).
+// All nav CSS lives in globals.css — no <style> tag (hydration fix)
 
 const links = [
   { label: "What is Kief", href: "/what-is-kief" },
   { label: "Hemp",         href: "/hemp" },
+  { label: "Process",      href: "/process" },
   { label: "Store",        href: "/store" },
   { label: "Community",    href: "/community" },
   { label: "Linen",        href: "/linen" },
@@ -37,7 +37,7 @@ export default function Navigation() {
       <nav className={`kief-nav ${scrolled ? "solid" : "transparent"}`}>
         <div className="kief-nav-inner">
 
-          {/* Logo — original colours, no filter */}
+          {/* Logo */}
           <Link href="/" aria-label="Kief Home">
             <Image
               src="/images/logo-v3.png"
@@ -58,7 +58,7 @@ export default function Navigation() {
             ))}
           </ul>
 
-          {/* Hamburger — always visible on mobile */}
+          {/* Hamburger */}
           <button
             className={`kief-burger ${open ? "active" : ""}`}
             onClick={() => setOpen(!open)}
