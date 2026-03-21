@@ -99,7 +99,7 @@ export default function Process() {
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)" }}>
         <Image
           src="/images/process.png"
-          alt="Kief Process"
+          alt="process.png"
           fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
@@ -136,7 +136,7 @@ export default function Process() {
           Experience the result of this process.
         </p>
         <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, maxWidth: "28rem", margin: "0 auto 2.5rem" }}>
-          Cycle One — five pieces each. Built slowly. Released once.
+          Cycle One — fifteen pieces. Built slowly. Released once.
         </p>
         <div className="reveal d3">
           <Link
