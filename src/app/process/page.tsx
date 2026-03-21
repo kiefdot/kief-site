@@ -97,8 +97,8 @@ export default function Process() {
       */}
       <section className="reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)", overflow: "hidden" }}>
         <Image
-          src="/images/processimg-1.png"
-          alt="Kief making process"
+          src="/images/processimg-1.jpg"
+          alt="processimg-1.jpg"
           fill
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}
