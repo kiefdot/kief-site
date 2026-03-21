@@ -9,9 +9,9 @@ import Link from "next/link";
 const links = [
   { label: "What is Kief", href: "/what-is-kief" },
   { label: "Hemp",         href: "/hemp" },
-  { label: "Process",      href: "/process" },
   { label: "Store",        href: "/store" },
   { label: "Community",    href: "/community" },
+  { label: "Process",      href: "/process" },
   { label: "Linen",        href: "/linen" },
   { label: "Accessories",  href: "/accessories" },
 ];
@@ -37,8 +37,8 @@ export default function Navigation() {
       <nav className={`kief-nav ${scrolled ? "solid" : "transparent"}`}>
         <div className="kief-nav-inner">
 
-          {/* Logo */}
-          <Link href="/" aria-label="Kief Home">
+          {/* Logo — always visible, sits behind open menu */}
+          <Link href="/" aria-label="Kief Home" style={{ position: "relative", zIndex: 202 }}>
             <Image
               src="/images/logo-v3.png"
               alt="Kief"
@@ -58,11 +58,12 @@ export default function Navigation() {
             ))}
           </ul>
 
-          {/* Hamburger */}
+          {/* Hamburger — z-index 202 so it always sits above the slide-in menu */}
           <button
             className={`kief-burger ${open ? "active" : ""}`}
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
+            style={{ position: "relative", zIndex: 202 }}
           >
             <span />
             <span />
@@ -72,7 +73,7 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* ── MOBILE MENU ──────────────────────────────────────────────── */}
+      {/* ── MOBILE MENU — slides in from right, starts BELOW nav bar ─── */}
       <div
         className={`kief-mobile-menu ${open ? "open" : ""}`}
         aria-hidden={!open}

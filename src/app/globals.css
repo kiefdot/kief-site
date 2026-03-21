@@ -409,12 +409,15 @@ input[type="range"]::-webkit-slider-thumb {
 .kief-burger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .kief-burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* mobile full-screen menu */
+/* mobile full-screen menu — starts at top:64px so it never covers the nav bar */
 .kief-mobile-menu {
   position: fixed;
-  inset: 0;
+  top: 64px;           /* sit below the 64px nav bar — no overlap */
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #0e0d0b;
-  z-index: 199;          /* below burger (201) so burger closes it */
+  z-index: 199;
   display: flex;
   flex-direction: column;
   justify-content: center;

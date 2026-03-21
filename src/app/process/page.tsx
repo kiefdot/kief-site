@@ -4,6 +4,39 @@ import Image from "next/image";
 import Link from "next/link";
 import useReveal from "@/components/useReveal";
 
+const steps = [
+  {
+    num: "01",
+    title: "The Fibre",
+    desc: "Hemp is cultivated in the highlands of Nepal, where the climate naturally supports strong, resilient fibre. Grown with minimal intervention, the crop restores the soil it lives in.",
+  },
+  {
+    num: "02",
+    title: "The Cloth",
+    desc: "The raw fibre is processed and woven by trusted suppliers into durable hemp fabric. This stage carries generations of textile knowledge — quiet, precise, and deeply rooted.",
+  },
+  {
+    num: "03",
+    title: "The Selection",
+    desc: "We source only what meets our standard. Each fabric is chosen for its texture, strength, and character — nothing excess, nothing unnecessary.",
+  },
+  {
+    num: "04",
+    title: "The Design",
+    desc: "In Sri Lanka, our in-house designers shape each piece with intention. Every line, cut, and proportion is considered — built around simplicity and longevity.",
+  },
+  {
+    num: "05",
+    title: "The Make",
+    desc: "Each garment is constructed by hand in small runs. Attention is given to every detail — from stitching to structure — ensuring the fabric becomes form without compromise.",
+  },
+  {
+    num: "06",
+    title: "The Release",
+    desc: "Pieces are released in limited cycles. Not to create scarcity, but to honour the process, the people, and the pace at which they were made.",
+  },
+];
+
 export default function Process() {
   useReveal();
 
@@ -13,12 +46,11 @@ export default function Process() {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <p className="eyebrow reveal">Process</p>
-        <h1 className="font-serif reveal d1" style={{ fontSize: "clamp(2.4rem,5.5vw,4.5rem)", fontWeight: 300, lineHeight: 1.08, letterSpacing: "-0.02em", marginTop: "1.5rem", maxWidth: "18ch" }}>
-          Every piece begins<br /><em>long before it is worn.</em>
+        <h1 className="font-serif reveal d1" style={{ fontSize: "clamp(2.4rem,5.5vw,4.5rem)", fontWeight: 300, lineHeight: 1.08, letterSpacing: "-0.02em", marginTop: "1.5rem" }}>
+          From Source<br /><em>to Form.</em>
         </h1>
         <p className="text-muted reveal d2" style={{ fontSize: "clamp(0.9rem,1.5vw,1rem)", lineHeight: 1.9, marginTop: "2rem", maxWidth: "32rem" }}>
-          In the soil. In the fiber. In the hands that shape it.
-          We do not create garments for trends — we create through process.
+          Every piece begins long before it is worn. In the fibre. In the hands that weave it. In the minds that shape it.
         </p>
       </section>
 
@@ -26,51 +58,29 @@ export default function Process() {
 
       {/* ── STEPS ─────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
-        <p className="eyebrow reveal" style={{ marginBottom: "0.5rem" }}>From Field to Form</p>
-        {[
-          {
-            num: "01",
-            title: "The Seed",
-            desc: "Hemp is planted in carefully selected soil across Sri Lanka. The crop requires minimal water, restores the earth it grows in, and matures without pesticides.",
-          },
-          {
-            num: "02",
-            title: "The Harvest",
-            desc: "Harvested by hand at the right moment — when the fibre is at its densest. Nothing is rushed. The timing is read from the plant, not a calendar.",
-          },
-          {
-            num: "03",
-            title: "The Fibre",
-            desc: "The raw plant is retted, broken, and scutched to release the long bast fibre. This is the material that will become cloth — already carrying the story of where it came from.",
-          },
-          {
-            num: "04",
-            title: "The Weave",
-            desc: "Sri Lankan artisans weave the fibre into fabric using techniques passed through generations. Each cloth is slightly different — shaped by the hands that made it.",
-          },
-          {
-            num: "05",
-            title: "The Form",
-            desc: "The fabric is cut and constructed with precision. Minimal seams. Clean silhouettes. Nothing added that doesn't need to be there.",
-          },
-          {
-            num: "06",
-            title: "The Release",
-            desc: "Each piece enters the world in a limited cycle — never repeated. This is not scarcity for its own sake. It is respect for the process that made it.",
-          },
-        ].map((item, i) => (
-          <div key={i} className={`reveal d${Math.min(i + 1, 4)}`} style={{
-            display: "grid",
-            gridTemplateColumns: "4rem 1fr",
-            gap: "1.5rem",
-            padding: "clamp(2rem,4vw,3rem) 0",
-            borderTop: "1px solid rgba(240,237,232,0.05)",
-            alignItems: "start",
-          }}>
-            <p className="font-serif" style={{ fontSize: "clamp(1.6rem,3vw,2.5rem)", fontWeight: 300, color: "var(--accent)", lineHeight: 1 }}>{item.num}</p>
+        {steps.map((item, i) => (
+          <div
+            key={item.num}
+            className={`reveal d${Math.min(i + 1, 4)}`}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "4rem 1fr",
+              gap: "1.5rem",
+              padding: "clamp(2rem,4vw,3rem) 0",
+              borderTop: "1px solid rgba(240,237,232,0.05)",
+              alignItems: "start",
+            }}
+          >
+            <p className="font-serif" style={{ fontSize: "clamp(1.6rem,3vw,2.5rem)", fontWeight: 300, color: "var(--accent)", lineHeight: 1 }}>
+              {item.num}
+            </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              <h2 className="font-serif" style={{ fontSize: "clamp(1.3rem,3vw,2rem)", fontWeight: 300 }}>{item.title}</h2>
-              <p className="text-muted" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, maxWidth: "42rem" }}>{item.desc}</p>
+              <h2 className="font-serif" style={{ fontSize: "clamp(1.3rem,3vw,2rem)", fontWeight: 300 }}>
+                {item.title}
+              </h2>
+              <p className="text-muted" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.9, maxWidth: "42rem" }}>
+                {item.desc}
+              </p>
             </div>
           </div>
         ))}
@@ -87,11 +97,17 @@ export default function Process() {
 
       {/* ── FULL IMAGE ────────────────────────────────────────────────── */}
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,50vw,560px)" }}>
-        <Image src="/images/process.png" alt="Kief Process" fill sizes="100vw" style={{ objectFit: "cover" }} />
+        <Image
+          src="/images/process.png"
+          alt="Kief Process"
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.3)" }} />
       </section>
 
-      {/* ── MATERIAL NOTES ────────────────────────────────────────────── */}
+      {/* ── MATERIALS ─────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-2">
           <div>
