@@ -1,20 +1,59 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import useReveal from "@/components/useReveal";
 
 export default function Home() {
   useReveal();
 
+  // Hero images — tap/swipe cycles through on mobile
+  const heroImages = [
+    "/images/mainpic.png",
+    "/images/fullimage.png",
+    "/images/collection.png",
+  ];
+  const [heroIdx, setHeroIdx] = useState(0);
+  const touchStartX = useRef<number>(0);
+
+  const nextHero = () => setHeroIdx((p) => (p + 1) % heroImages.length);
+  const prevHero = () => setHeroIdx((p) => (p - 1 + heroImages.length) % heroImages.length);
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section style={{ height: "100svh", position: "relative", overflow: "hidden" }}>
-        <Image src="/images/mainpic.png" alt="Kief Campaign" fill priority sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,13,11,0.7) 0%, rgba(14,13,11,0.15) 50%, rgba(14,13,11,0.3) 100%)" }} />
+      <section
+        style={{ height: "100svh", position: "relative", overflow: "hidden" }}
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          const diff = touchStartX.current - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) diff > 0 ? nextHero() : prevHero();
+        }}
+      >
+        {heroImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt="Kief Campaign"
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            quality={100}
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+              opacity: i === heroIdx ? 1 : 0,
+              transition: "opacity 0.8s cubic-bezier(0.16,1,0.3,1)",
+            }}
+          />
+        ))}
 
+        {/* gradient */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,13,11,0.72) 0%, rgba(14,13,11,0.12) 55%, rgba(14,13,11,0.28) 100%)" }} />
+
+        {/* logo + tagline */}
         <div style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", left: "clamp(1.5rem,5vw,5rem)" }}>
           <div className="animate-blur-in">
             <Image src="/images/logo-v2.png" alt="Kief" width={220} height={80} priority
@@ -25,10 +64,29 @@ export default function Home() {
           </p>
         </div>
 
-        {/* hide scroll indicator on mobile — not enough room */}
-        <div className="animate-blur-in delay-3" style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", right: "clamp(1.5rem,5vw,5rem)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ width: "1px", height: "48px", background: "rgba(240,237,232,0.15)", display: "block" }} />
-          <span className="eyebrow" style={{ color: "rgba(240,237,232,0.2)", writingMode: "vertical-rl", letterSpacing: "0.25em" }}>Scroll</span>
+        {/* dot indicators */}
+        <div style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", right: "clamp(1.5rem,5vw,5rem)", display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
+          {heroImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setHeroIdx(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              style={{
+                width: i === heroIdx ? "1px" : "1px",
+                height: i === heroIdx ? "32px" : "12px",
+                background: i === heroIdx ? "rgba(240,237,232,0.7)" : "rgba(240,237,232,0.2)",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* scroll hint */}
+        <div className="animate-blur-in delay-3" style={{ position: "absolute", bottom: "clamp(2.5rem,6vw,5rem)", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
+          <span style={{ width: "1px", height: "40px", background: "rgba(240,237,232,0.18)", display: "block" }} />
         </div>
       </section>
 
@@ -54,9 +112,8 @@ export default function Home() {
 
       <hr className="rule" />
 
-      {/* ── MATERIAL — responsive 2-col ───────────────────────────────── */}
+      {/* ── MATERIAL ──────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
-        {/* grid-2 collapses to 1-col on mobile via globals.css */}
         <div className="grid-2">
           <p className="font-serif reveal" style={{ fontSize: "clamp(1.05rem,1.8vw,1.2rem)", fontWeight: 300, lineHeight: 1.85, fontStyle: "italic" }}>
             We work with materials that take time.
@@ -73,10 +130,10 @@ export default function Home() {
 
       {/* ── FULL IMAGE ────────────────────────────────────────────────── */}
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(260px,55vw,620px)" }}>
-        <Image src="/images/fullimage.png" alt="Kief Fabric" fill sizes="100vw" style={{ objectFit: "cover" }} />
+        <Image src="/images/hero.png" alt="Kief Fabric" fill sizes="100vw" quality={90} style={{ objectFit: "cover" }} />
       </section>
 
-      {/* ── STATS — stays 2-col, stacks only at very small ────────────── */}
+      {/* ── STATS ─────────────────────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)", borderBottom: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="grid-stats">
           {[
@@ -104,10 +161,13 @@ export default function Home() {
             In the soil. In the fiber.
             In the hands that shape it.
           </p>
+          <Link href="/process" className="kief-link reveal d3" style={{ display: "inline-flex", marginTop: "2rem" }}>
+            Our Process <span className="arrow">→</span>
+          </Link>
         </div>
       </section>
 
-      {/* ── COMMUNITY — responsive 2-col ──────────────────────────────── */}
+      {/* ── COMMUNITY ─────────────────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)", borderBottom: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="container-clean section-padding">
           <div className="grid-2">
@@ -122,26 +182,27 @@ export default function Home() {
                 Built with and for communities in Sri Lanka.
                 Every purchase sustains the hands and land behind the cloth.
               </p>
-              <a href="/community" className="kief-link" style={{ alignSelf: "flex-start" }}>
+              <Link href="/community" className="kief-link" style={{ alignSelf: "flex-start" }}>
                 Explore Community <span className="arrow">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <a href="/store" className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,45vw,520px)", display: "block" }}>
-        <Image src="/images/collection.png" alt="Cycle One" fill sizes="100vw" style={{ objectFit: "cover" }} />
+      {/* ── CTA — Coming Soon ─────────────────────────────────────────── */}
+      <Link href="/store" className="img-zoom reveal" style={{ position: "relative", height: "clamp(280px,45vw,520px)", display: "block" }}>
+        <Image src="/images/collection.png" alt="Cycle One" fill sizes="100vw" quality={90} style={{ objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.55)" }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem" }}>
-          <p className="eyebrow" style={{ color: "rgba(240,237,232,0.35)" }}>Now Available</p>
+          {/* CHANGED: New Arrivals → Coming Soon */}
+          <p className="eyebrow" style={{ color: "rgba(240,237,232,0.35)" }}>Coming Soon</p>
           <p className="font-serif" style={{ fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: 300, letterSpacing: "0.02em" }}>Cycle One</p>
           <span className="kief-link" style={{ pointerEvents: "none" }}>
             Shop the Collection <span className="arrow">→</span>
           </span>
         </div>
-      </a>
+      </Link>
 
     </div>
   );

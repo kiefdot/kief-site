@@ -10,7 +10,7 @@ export default function Hemp() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
-      {/* HERO */}
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="container-clean" style={{ position: "relative", minHeight: "70vh", display: "flex", alignItems: "flex-end", paddingBottom: "clamp(3rem,8vw,6rem)", paddingTop: "clamp(5rem,9vw,8rem)" }}>
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "1px", background: "rgba(107,125,92,0.3)" }} />
         <div style={{ position: "absolute", left: 0, top: 0, width: "500px", height: "100%", background: "radial-gradient(ellipse at left center, rgba(107,125,92,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -25,7 +25,7 @@ export default function Hemp() {
 
       <hr className="rule" />
 
-      {/* WHY SRI LANKA */}
+      {/* ── WHY SRI LANKA ─────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div style={{ maxWidth: "44rem" }}>
           <div className="reveal" style={{ marginBottom: "1.5rem", display: "flex", alignItems: "baseline", gap: "1rem", flexWrap: "wrap" }}>
@@ -46,7 +46,7 @@ export default function Hemp() {
 
       <hr className="rule" />
 
-      {/* WHY HEMP — text + image trio, grid-hemp collapses on mobile */}
+      {/* ── WHY HEMP — text + 4-image grid ────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-hemp">
 
@@ -78,17 +78,24 @@ export default function Hemp() {
             </div>
           </div>
 
-          {/* image trio — 2-col internal grid, stacks on mobile */}
-          <div className="reveal d2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-            <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
-              <Image src="/images/hemp-1.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "2.5rem" }}>
+          {/* 4-image grid — 2 cols × 2 rows on desktop, swipeable on mobile */}
+          <div className="reveal d2">
+            {/* desktop: 2×2 grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
               <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
-                <Image src="/images/hemp-2.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+                <Image src="/images/hemp-1.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
               </div>
-              <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
-                <Image src="/images/hemp-3.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "2.5rem" }}>
+                <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
+                  <Image src="/images/hemp-2.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+                </div>
+                <div className="img-zoom" style={{ position: "relative", aspectRatio: "3/4" }}>
+                  <Image src="/images/hemp-3.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
+                </div>
+              </div>
+              {/* 4th image — spans full width on the row below */}
+              <div className="img-zoom" style={{ position: "relative", aspectRatio: "2/1", gridColumn: "1 / -1" }}>
+                <Image src="/images/hemp-4.jpg" alt="Hemp" fill style={{ objectFit: "cover" }} />
               </div>
             </div>
           </div>
@@ -98,7 +105,7 @@ export default function Hemp() {
 
       <hr className="rule" />
 
-      {/* WHY LIMITED — 2-col desktop, 1-col mobile */}
+      {/* ── WHY LIMITED ───────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-2">
           <div>
@@ -122,7 +129,7 @@ export default function Hemp() {
         </div>
       </section>
 
-      {/* WIDE IMAGE */}
+      {/* ── WIDE IMAGE ────────────────────────────────────────────────── */}
       <section className="img-zoom reveal" style={{ position: "relative", height: "clamp(260px,50vw,560px)" }}>
         <Image src="/images/hemp-wide.jpg" alt="Hemp fabric" fill sizes="100vw" style={{ objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(14,13,11,0.25)" }} />
