@@ -13,11 +13,11 @@ export default function Home() {
 
   // ── Process strip: 5 images, swipeable on mobile ─────────────────
   const processImages = [
-    { src: "/images/process1.png", alt: "Process step 1" },
-    { src: "/images/process2.png", alt: "Process step 2" },
-    { src: "/images/process3.png", alt: "Process step 3" },
-    { src: "/images/process4.png", alt: "Process step 4" },
-    { src: "/images/process5.png", alt: "Process step 5" },
+    { src: "/images/process1.png", alt: "Hemp garment production step 1 — Kief Sri Lanka" },
+    { src: "/images/process2.png", alt: "Hemp garment production step 2 — Kief Sri Lanka" },
+    { src: "/images/process3.png", alt: "Hemp garment production step 3 — Kief Sri Lanka" },
+    { src: "/images/process4.png", alt: "Hemp garment production step 4 — Kief Sri Lanka" },
+    { src: "/images/process5.png", alt: "Hemp garment production step 5 — Kief Sri Lanka" },
   ];
 
   // Touch handling for process strip
@@ -27,8 +27,15 @@ export default function Home() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
-      {/* ── HERO — single image, no distracting UI ────────────────────── */}
+      {/* ── HERO — desktop: mainpic.png  |  mobile: mainpic-mobile.png ── */}
+      {/*
+        Two images stacked — CSS hides one depending on screen width.
+        Name your portrait/mobile crop: /public/images/mainpic-mobile.png
+        If you don't have a mobile crop yet, both will show mainpic.png
+        and you can swap the src in later without touching any other code.
+      */}
       <section style={{ height: "100svh", position: "relative", overflow: "hidden" }}>
+        {/* Desktop image — hidden below 768px */}
         <Image
           src="/images/mainpic.png"
           alt="Kief Campaign"
@@ -37,7 +44,31 @@ export default function Home() {
           sizes="100vw"
           quality={100}
           style={{ objectFit: "cover", objectPosition: "center" }}
+          className="hero-desktop"
         />
+        {/* Mobile image — hidden above 768px. Swap src to your portrait crop. */}
+        <Image
+          src="/images/mainpic-mobile.png"
+          alt="Kief Campaign"
+          fill
+          priority
+          sizes="100vw"
+          quality={100}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
+          className="hero-mobile"
+          onError={(e) => {
+            // Graceful fallback: if mobile image not found, hide it so desktop shows
+            (e.currentTarget as HTMLImageElement).style.display = "none";
+          }}
+        />
+        <style>{`
+          .hero-desktop { display: block; }
+          .hero-mobile  { display: none;  }
+          @media (max-width: 768px) {
+            .hero-desktop { display: none;  }
+            .hero-mobile  { display: block; }
+          }
+        `}</style>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,13,11,0.72) 0%, rgba(14,13,11,0.12) 55%, rgba(14,13,11,0.28) 100%)" }} />
 
         {/* logo + tagline */}
@@ -63,8 +94,8 @@ export default function Home() {
         <div className="marquee-track">
           {["Hemp & Linen", "Built Slowly", "Released Briefly", "Sri Lanka", "Cycle One", "From the Leaf", "Natural Fibres",
             "Hemp & Linen", "Built Slowly", "Released Briefly", "Sri Lanka", "Cycle One", "From the Leaf", "Natural Fibres"].map((t, i) => (
-              <span key={i} className="marquee-item">{t}</span>
-            ))}
+            <span key={i} className="marquee-item">{t}</span>
+          ))}
         </div>
       </div>
 
@@ -83,12 +114,12 @@ export default function Home() {
       {/* ── MATERIAL TEXT ─────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <div className="grid-2">
-          <p className="font-serif reveal" style={{ fontSize: "clamp(1.05rem,1.8vw,1.2rem)", fontWeight: 300, lineHeight: 1.85, fontStyle: "italic" }}>
+          <p className="font-serif reveal" style={{ fontSize: "clamp(1.25rem,2.2vw,1.6rem)", fontWeight: 300, lineHeight: 1.75, fontStyle: "italic" }}>
             We work with materials that take time.
             That grow slowly.
             That change with use.
           </p>
-          <p className="font-serif reveal d2" style={{ fontSize: "clamp(1.05rem,1.8vw,1.2rem)", fontWeight: 300, lineHeight: 1.85, color: "var(--muted)" }}>
+          <p className="font-serif reveal d2" style={{ fontSize: "clamp(1.25rem,2.2vw,1.6rem)", fontWeight: 300, lineHeight: 1.75, color: "var(--muted)" }}>
             Hemp. Linen.<br />
             Not because they are trends,<br />
             but because they hold a process within them.
@@ -181,7 +212,7 @@ export default function Home() {
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)", borderBottom: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="grid-stats">
           {[
-            { num: "01", label: "Cycle", sub: "First release — limited run" },
+            { num: "01",   label: "Cycle",   sub: "First release — limited run" },
             { num: "100%", label: "Natural", sub: "Hemp & linen, nothing synthetic" },
           ].map(({ num, label, sub }) => (
             <div key={label} className="reveal" style={{ background: "var(--bg)", padding: "clamp(2.5rem,6vw,5rem) clamp(1.5rem,4vw,4rem)" }}>
