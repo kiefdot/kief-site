@@ -14,7 +14,6 @@ export default function Community() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <p className="eyebrow reveal">Community</p>
         <h1 className="font-serif reveal d1" style={{ fontSize: "clamp(2.6rem,6vw,5rem)", fontWeight: 300, lineHeight: 1.05, letterSpacing: "-0.02em", marginTop: "1.5rem" }}>
@@ -25,7 +24,6 @@ export default function Community() {
         </p>
       </section>
 
-      {/* ── 30% STAT BAND ─────────────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)", borderBottom: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="container-clean section-padding">
           <div className="grid-2">
@@ -45,7 +43,6 @@ export default function Community() {
         </div>
       </section>
 
-      {/* ── QUOTE ─────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding" style={{ textAlign: "center" }}>
         <p className="font-serif reveal" style={{ fontSize: "clamp(1.5rem,4vw,3rem)", fontWeight: 300, lineHeight: 1.25, maxWidth: "26ch", margin: "0 auto" }}>
           This is not just clothing.<br /><em>It is a process extended into the world around it.</em>
@@ -54,7 +51,6 @@ export default function Community() {
 
       <hr className="rule" />
 
-      {/* ── INITIATIVES ───────────────────────────────────────────────── */}
       <section className="container-clean section-padding">
         <p className="eyebrow reveal" style={{ marginBottom: "3rem" }}>Cycle One Kief Community Initiative</p>
         <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4rem,8vw,7rem)" }}>
@@ -81,14 +77,14 @@ export default function Community() {
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", justifyContent: "center" }}>
                 <p className="eyebrow" style={{ opacity: 0.35 }}>02</p>
                 <h3 className="font-serif" style={{ fontSize: "clamp(1.3rem,3vw,2.2rem)", fontWeight: 300, lineHeight: 1.2 }}>
-                  Street animal meal program
+                  1,000 trees planting programme
                 </h3>
                 <p className="text-muted" style={{ fontSize: "clamp(0.85rem,1.1vw,0.95rem)", lineHeight: 1.85 }}>
-                  A meal initiative providing consistent support to street animals across Sri Lanka.
+                  A reforestation initiative planting 1,000 trees across Sri Lanka — restoring native ecosystems one garment at a time.
                 </p>
               </div>
               <div className="img-zoom" style={{ position: "relative", height: "clamp(240px,35vw,460px)" }}>
-                <Image src="/images/community_animals2.jpg" alt="Street animal meal program" fill style={{ objectFit: "cover" }} />
+                <Image src="/images/community_trees.jpg" alt="1,000 trees planting programme" fill style={{ objectFit: "cover" }} />
               </div>
             </div>
           </div>
@@ -98,7 +94,6 @@ export default function Community() {
 
       <hr className="rule" />
 
-      {/* ── IMPACT PROJECTION SLIDER ──────────────────────────────────── */}
       <section className="container-clean section-padding" style={{ textAlign: "center" }}>
         <p className="font-serif reveal" style={{ fontSize: "clamp(0.9rem,1.5vw,1.1rem)", fontStyle: "italic", color: "var(--muted)", marginBottom: "3rem" }}>
           Impact Projection
@@ -140,7 +135,7 @@ export default function Community() {
             />
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
-            {[1,2,3,4,5].map((y) => (
+            {[1, 2, 3, 4, 5].map((y) => (
               <button key={y} onClick={() => setYear(y)} style={{ fontFamily: "var(--serif)", fontSize: "clamp(0.8rem,1.4vw,1rem)", fontStyle: "italic", color: y === year ? "var(--accent)" : "var(--muted)", background: "none", border: "none", cursor: "pointer", transition: "color .2s", fontWeight: 300, padding: "0.25rem" }}>
                 Year {y}
               </button>
@@ -158,11 +153,10 @@ export default function Community() {
 
       <hr className="rule" />
 
-      {/* ── WHY + APPROACH ────────────────────────────────────────────── */}
       <section className="container-clean section-padding" style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
         {[
           { label: "Why it matters", body: ["Everything we build starts with process.", "It is about where it comes from and who it impacts."] },
-          { label: "Approach",       body: ["We start with what is needed most.", "Growing with each release and expanding across Sri Lanka."] },
+          { label: "Approach", body: ["We start with what is needed most.", "Growing with each release and expanding across Sri Lanka."] },
         ].map((block) => (
           <div key={block.label} className="grid-2">
             <p className="eyebrow reveal">{block.label}</p>
@@ -177,7 +171,6 @@ export default function Community() {
 
       <hr className="rule" />
 
-      {/* ── SIGNUP ────────────────────────────────────────────────────── */}
       <section className="container-clean section-padding" style={{ textAlign: "center" }}>
         <div style={{ maxWidth: "36rem", margin: "0 auto" }}>
           <p className="eyebrow reveal" style={{ marginBottom: "1.5rem" }}>Community Access</p>
@@ -214,7 +207,6 @@ export default function Community() {
         </div>
       </section>
 
-      {/* ── FUTURE ────────────────────────────────────────────────────── */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="container-clean section-padding" style={{ textAlign: "center" }}>
           <p className="eyebrow reveal" style={{ marginBottom: "1.5rem" }}>Future</p>
@@ -227,13 +219,6 @@ export default function Community() {
         </div>
       </section>
 
-      {/* ── PDF DOWNLOAD ──────────────────────────────────────────────── */}
-      {/*
-        HOW TO ADD YOUR PDF:
-        1. Put your PDF file inside /public  e.g. /public/kief-community-initiative.pdf
-        2. The href below will work automatically — no other changes needed
-        3. Rename the file to match the href if needed
-      */}
       <section style={{ borderTop: "1px solid rgba(240,237,232,0.05)" }}>
         <div className="container-clean section-padding" style={{ textAlign: "center" }}>
           <p className="eyebrow reveal" style={{ marginBottom: "1.5rem" }}>Read More</p>
