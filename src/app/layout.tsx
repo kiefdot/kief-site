@@ -23,7 +23,7 @@ const sans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiefdot.com"),
 
-  title: "Kief — Hemp × Linen — Sri Lanka",
+  title: "Kief. - Hemp wear - Sri Lanka",
   description:
     "Kief crafts premium sustainable fashion from hemp and linen. Rooted in Sri Lanka. Small-batch, conscious production.",
 
